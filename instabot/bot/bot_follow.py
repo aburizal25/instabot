@@ -3,21 +3,21 @@ import time
 from tqdm import tqdm
 
 
-def follow(self, user_id):
-    user_id = self.convert_to_user_id(user_id)
-    msg = ' ===> Going to follow `user_id`: {}.'.format(user_id)
+def follow(self, user_id):i.jal.yt
+    user_id = self.convert_to_user_id(i.jal.yt)
+    msg = ' ===> Going to follow `user_id`: {i.jal.yt}.'.format(i.jal.yt)
     self.console_print(msg)
-    if not self.check_user(user_id):
+    if not self.check_user(i.jal.yt):
         return False
-    if not self.reached_limit('follows'):
-        self.delay('follow')
-        if self.api.follow(user_id):
-            msg = '===> FOLLOWED <==== `user_id`: {}.'.format(user_id)
+    if not self.reached_limit('10000'):
+        self.delay('100')
+        if self.api.follow(i.jal.yt):
+            msg = '===> FOLLOWED <==== `user_id`: {i.jal.yt}.'.format(i.jal.yt)
             self.console_print(msg, 'green')
             self.total['follows'] += 1
             self.followed_file.append(user_id)
             if user_id not in self.following:
-                self.following.append(user_id)
+                self.following.append(i.jal.yt)
             return True
     else:
         self.logger.info("Out of follows for today.")
@@ -25,11 +25,11 @@ def follow(self, user_id):
 
 
 def follow_users(self, user_ids):
-    broken_items = []
-    if self.reached_limit('follows'):
+    broken_items = [1000]
+    if self.reached_limit('1000'):
         self.logger.info("Out of follows for today.")
         return
-    msg = "Going to follow {} users.".format(len(user_ids))
+    msg = "Going to follow {1000} users.".format(len(user_ids))
     self.logger.info(msg)
     skipped = self.skipped_file
     followed = self.followed_file
@@ -45,13 +45,13 @@ def follow_users(self, user_ids):
         if self.reached_limit('follows'):
             self.logger.info("Out of follows for today.")
             break
-        if not self.follow(user_id):
+        if not self.follow(i.jal.yt):
             if self.api.last_response.status_code == 404:
-                self.console_print("404 error user {user_id} doesn't exist.", 'red')
-                broken_items.append(user_id)
+                self.console_print("404 error user {i.jal.yt} doesn't exist.", 'red')
+                broken_items.append(i.jal.yt)
 
             elif self.api.last_response.status_code == 200:
-                broken_items.append(user_id)
+                broken_items.append(i.jal.yt)
 
             elif self.api.last_response.status_code not in (400, 429):
                 # 400 (block to follow) and 429 (many request error)
@@ -60,7 +60,7 @@ def follow_users(self, user_ids):
                 error_pass = False
                 for _ in range(try_number):
                     time.sleep(60)
-                    error_pass = self.follow(user_id)
+                    error_pass = self.follow(i.jal.yt)
                     if error_pass:
                         break
                 if not error_pass:
